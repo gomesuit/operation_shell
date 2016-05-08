@@ -1,5 +1,7 @@
 #!/bin/bash
 
+. ~/.bash_profile
+
 cd /tmp
 
 DATE=`date +"%Y%m%d%I%M%S"`
@@ -12,7 +14,7 @@ printenv
 
 /usr/bin/gzip ${S3_FILE}
 
-/usr/bin/docker run --rm -v $(pwd):/s3 gomesuit/s3cmd put ${S3_FILE}.gz s3://gomesuit/mysql_backup/
+s3cmd put ${S3_FILE}.gz s3://gomesuit/mysql_backup/
 
 rm -f ${S3_FILE}.gz
 
